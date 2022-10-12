@@ -1,0 +1,132 @@
+.Register {
+  width: 476px;
+  margin: auto;
+  text-align: center;
+  padding-top: 36px;
+}
+
+.Register-title {
+  font-weight: 700;
+  font-size: 30px;
+  color: #000000;
+}
+.Register form > p {
+  font-weight: 500;
+  font-size: 18px;
+  color: #4a5568;
+}
+
+.Register form {
+  background-color: white;
+  text-align: start;
+  padding: 42px;
+}
+.Register form label,
+.password > div > h1 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #2d3748;
+  align-self: center;
+}
+.Register form input {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  height: 40px;
+  margin-top: 8px;
+  border-radius: 6px;
+  padding-left: 12px;
+}
+.Register form input:focus,
+forn input:active {
+  outline: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+}
+.Register .button-group button {
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  max-width: 392px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #2d3748;
+  padding: 10px 0;
+}
+.Register .button-group button:active {
+  border: none;
+}
+.button-group img {
+  position: relative;
+  right: 8px;
+  top: 3px;
+}
+.button-group button:nth-child(2) img {
+  position: relative;
+  right: 10px;
+  top: 1px;
+}
+.Register .button-group button:nth-child(1) {
+  margin-top: 14px;
+  margin-bottom: 16px;
+}
+
+.Register .password div {
+  display: flex;
+  margin: 6px 0 -18px;
+  justify-content: space-between;
+}
+.Register .forgot-password {
+  font-weight: 600;
+  font-size: 16px;
+  color: #0081d0;
+}
+.Register .middle-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  margin: 32px 0;
+  color: #718096;
+}
+.Register .name input {
+  margin-bottom: 19px;
+}
+.Register .middle-text:before,
+.middle-text:after {
+  content: "";
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+}
+.Register .middle-text:before {
+  margin-right: 10px;
+}
+.Register .middle-text:after {
+  margin-left: 10px;
+}
+
+.Register .signin-button {
+  width: 100%;
+  height: 48px;
+  background: #009eff;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.Register .eye-logo {
+  position: absolute;
+  right: 16px;
+  bottom: 0;
+}
+.Register .password {
+  position: relative;
+}

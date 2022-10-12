@@ -1,0 +1,114 @@
+.main {
+  font-family: "Inter", sans-serif;
+  width: 684px;
+  margin: auto;
+  padding-bottom: 52px;
+}
+.main-title {
+  font-weight: 700;
+  font-size: 30px;
+  color: #000000;
+  margin: 42px 0;
+}
+.main label {
+  font-weight: 500;
+  font-size: 16px;
+  color: #2d3748;
+}
+.main input,
+select {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  height: 48px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  padding-left: 14px;
+  font-weight: 400;
+  font-size: 18px;
+}
+.main select {
+  color: #2d3748;
+}
+.main-details-title,
+.org-details-title,
+.budget label {
+  font-weight: 600;
+  font-size: 24px;
+  color: #000000;
+}
+.main-details-title {
+  margin-bottom: 12px;
+}
+.org-details-title {
+  margin-top: 30px;
+  margin-bottom: 12px;
+}
+.location {
+  display: flex;
+  justify-content: space-between;
+}
+.location label {
+  width: 50%;
+}
+.location label:first-child {
+  margin-right: 24px;
+}
+.org-details {
+  background: #edf2f7;
+  padding: 12px;
+  width: 708px;
+  margin-bottom: 12px;
+}
+.org-details .upper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.org-details .upper label:first-child {
+  margin-right: 24px;
+}
+#department {
+  width: 372px;
+}
+.org-details .upper label span {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 22px;
+  width: 48px;
+  height: 48px;
+  margin-top: 8px;
+  padding: 9px 14px;
+  background-color: white;
+  border: 2px solid #a0aec0;
+  text-align: center;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+.org-details .upper label .clicked {
+  background-color: #f5fbff !important;
+  border: 2px solid #32b1ff;
+}
+.org-details .upper label span:last-child {
+  margin-right: 0;
+}
+.add-department {
+  color: #009eff;
+  font-weight: 600;
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.budget {
+  margin-top: 42px;
+}
+@media only screen and (max-width: 776px) {
+  .main {
+    padding: 12px;
+  }
+  .org-details {
+    width: auto;
+  }
+}
