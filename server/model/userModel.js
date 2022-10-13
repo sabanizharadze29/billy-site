@@ -7,6 +7,9 @@ const userSchema = new mongoose.Schema({
     min: 3,
     max: 15,
   },
+  fbEmail: {
+    type: String,
+  },
   password: {
     type: String,
     required: true,

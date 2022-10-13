@@ -29,6 +29,18 @@
   text-align: start;
   padding: 32px 40px;
 }
+.google-button {
+  box-shadow: none !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  background-color: white !important;
+  height: 40px !important;
+  display: flex;
+  justify-content: center;
+}
+.Login .google-button div {
+  padding: 0px !important;
+}
 .Login form label,
 .password > div > h1 {
   font-weight: 500;
@@ -60,6 +72,12 @@ forn input:active {
   font-weight: 600;
   font-size: 16px;
   color: #0081d0;
+}
+.Login .metro img {
+  position: relative;
+  top: -9px;
+  width: 19px;
+  left: 38%;
 }
 .Login .middle-text {
   display: flex;

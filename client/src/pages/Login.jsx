@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { useNavigate, Link } from "react-router-dom";
 import Logo from "../assets/BiLLY.png";
-import FacebookLogo from "../assets/facebook.png";
 import GoogleLogo from "../assets/google.png";
+
 import RemoveRedEyeIcon from "../assets/eye.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { loginRoute } from "../utils/APIRoutes";
+import FacebookLogin from "react-facebook-login";
+import { GoogleLogin } from "react-google-login";
+
+import { gapi } from "gapi-script";
+const clientId =
+  "394003379659-jgpi3peh2b3ij0uusschvl9s2m6g5fu6.apps.googleusercontent.com";
 function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -26,6 +32,54 @@ function Login() {
     draggable: true,
     theme: "dark",
   };
+  function componentClicked(data) {
+    console.log(data);
+  }
+  useEffect(() => {
+    // fb button
+    var fb_img = document.createElement("img");
+    fb_img.src = "images/facebookColored.png";
+    const fb = document.getElementsByClassName("metro");
+    let fbText = "Login With Facebook";
+    let answer = fb[0].hasChildNodes();
+    if (answer) {
+      fb[0].replaceChildren(fb_img, fbText);
+    }
+    console.log(answer);
+    return () => {};
+  });
+  const responseFacebook = async (response) => {
+    const facebookEmail = response.email;
+    const { data } = await axios.post(loginRoute, { facebookEmail });
+
+    if (!data.status) {
+      toast.error(data.msg, toastOptions);
+    }
+    if (data.status) {
+      navigate("/company");
+    }
+  };
+  const responseGoogle = async (response) => {
+    const googleEmail = response.profileObj.email;
+    const { data } = await axios.post(loginRoute, { googleEmail });
+    console.log(data.status);
+
+    if (!data.status) {
+      toast.error(data.msg, toastOptions);
+    }
+    if (data.status) {
+      navigate("/company");
+    }
+  };
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
+  });
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
@@ -43,6 +97,7 @@ function Login() {
       }
     }
   };
+
   const handleValidation = () => {
     const { email, password } = values;
     if (password.length < 6) {
@@ -100,12 +155,20 @@ function Login() {
         <h3 className="middle-text">or continue with</h3>
 
         <div className="buttons-group">
-          <button>
-            <img src={GoogleLogo} alt="" />
-          </button>
-          <button>
-            <img src={FacebookLogo} alt="" />
-          </button>
+          <GoogleLogin
+            clientId={clientId}
+            buttonText=""
+            className="google-button"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
+          <FacebookLogin
+            appId="558786399347976"
+            fields="name,email,picture"
+            onClick={componentClicked}
+            callback={responseFacebook}
+          />
         </div>
       </form>
       <ToastContainer />

@@ -47,30 +47,50 @@ forn input:active {
   flex-direction: column;
 }
 .Register .button-group button {
-  background-color: white;
-  border: 1px solid #e2e8f0;
+  font-family: "Poppins", sans-serif !important;
+  background-color: white !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 6px;
   max-width: 392px;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
-  color: #2d3748;
+  color: #2d3748 !important;
   padding: 10px 0;
+}
+.Register .button-group > button {
+  background-color: white;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  max-width: 392px !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  display: flex;
+  justify-content: center;
+  color: #2d3748 !important;
+  box-shadow: none !important;
+  font-family: "Poppins", sans-serif !important;
+}
+.Register .button-group > button div {
+  margin: 0 !important;
 }
 .Register .button-group button:active {
   border: none;
 }
-.button-group img {
+.Register .google-button div {
+  padding: 0 10px !important;
   position: relative;
-  right: 8px;
-  top: 3px;
+  top: 2px;
 }
-.button-group button:nth-child(2) img {
+.button-group span:nth-child(2) img {
   position: relative;
   right: 10px;
+
   top: 1px;
 }
 .Register .button-group button:nth-child(1) {
   margin-top: 14px;
+  text-transform: none;
+  width: 100%;
   margin-bottom: 16px;
 }
 

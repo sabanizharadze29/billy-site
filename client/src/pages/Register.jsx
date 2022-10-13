@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Register.css";
 import Logo from "../assets/BiLLY.png";
-import FacebookLogo from "../assets/facebookFilled.png";
 import GoogleLogo from "../assets/googleFilled.png";
+import { GoogleLogin } from "react-google-login";
+
 import RemoveRedEyeIcon from "../assets/eye.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { registerRoute } from "../utils/APIRoutes";
+import FacebookLogin from "react-facebook-login";
+import { gapi } from "gapi-script";
+const clientId =
+  "394003379659-jgpi3peh2b3ij0uusschvl9s2m6g5fu6.apps.googleusercontent.com";
 function Register() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -46,6 +51,35 @@ function Register() {
     } else {
     }
   };
+  function componentClicked(data) {
+    console.log(data);
+  }
+  const responseFacebook = async (response) => {
+    console.log(response);
+    const facebookEmail = response.email;
+    const { data } = await axios.post(registerRoute, { facebookEmail });
+
+    if (!data.status) {
+      toast.error(data.msg, toastOptions);
+    }
+    if (data.status) {
+      navigate("/company");
+    }
+  };
+  useEffect(() => {
+    // fb button
+    var fb_img = document.createElement("img");
+    fb_img.src = "../images/facebookFilled.png";
+    const fb = document.getElementsByClassName("metro");
+    let fbText = "Sign Up with Facebook";
+    let answer = fb[0].hasChildNodes();
+    if (answer) {
+      fb[0].replaceChildren(fb_img, fbText);
+    }
+
+    return () => {};
+  }, [0]);
+  // fb button
   const handleValidation = () => {
     const { email, password, name } = values;
     if (password.length < 6) {
@@ -63,6 +97,29 @@ function Register() {
     }
     return true;
   };
+  // google button
+  const responseGoogle = async (response) => {
+    const googleEmail = response.profileObj.email;
+    const { data } = await axios.post(registerRoute, { googleEmail });
+    console.log(data.status);
+
+    if (!data.status) {
+      toast.error(data.msg, toastOptions);
+    }
+    if (data.status) {
+      navigate("/company");
+    }
+  };
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+      });
+    }
+    gapi.load("client:auth2", start);
+  });
+  // end google button
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
@@ -74,14 +131,21 @@ function Register() {
         <p>Enter your info to get started?</p>
 
         <div className="button-group">
-          <button>
-            <img src={GoogleLogo} alt="" />
-            Sign Up with Facebook
-          </button>
-          <button>
-            <img src={FacebookLogo} alt="" />
-            Sign Up with Google
-          </button>
+          <GoogleLogin
+            clientId={clientId}
+            className="google-button"
+            buttonText="Sign Up With Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            disabledStyle={true}
+            cookiePolicy={"single_host_origin"}
+          />
+          <FacebookLogin
+            appId="558786399347976"
+            fields="name,email,picture"
+            onClick={componentClicked}
+            callback={responseFacebook}
+          />
         </div>
         <h3 className="middle-text">OR</h3>
         <label className="name">
