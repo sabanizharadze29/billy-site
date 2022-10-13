@@ -6,8 +6,9 @@ import GoogleLogo from "../assets/googleFilled.png";
 import RemoveRedEyeIcon from "../assets/eye.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { registerRoute } from "../utils/APIRoutes";
 function Register() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -29,7 +30,20 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      navigate("/company");
+      const { email, password, name } = values;
+      const { data } = await axios.post(registerRoute, {
+        name,
+        email,
+        password,
+      });
+      if (!data.status) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.status === true) {
+        // localstorage aklia
+        navigate("/company");
+      }
+    } else {
     }
   };
   const handleValidation = () => {

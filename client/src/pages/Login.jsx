@@ -7,6 +7,8 @@ import GoogleLogo from "../assets/google.png";
 import RemoveRedEyeIcon from "../assets/eye.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { loginRoute } from "../utils/APIRoutes";
 function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -27,7 +29,18 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      navigate("/company");
+      const { email, password } = values;
+
+      const { data } = await axios.post(loginRoute, { email, password });
+
+      if (!data.status) {
+        toast.error(data.msg, toastOptions);
+      }
+      if (data.status) {
+        // localstorage
+
+        navigate("/company");
+      }
     }
   };
   const handleValidation = () => {
