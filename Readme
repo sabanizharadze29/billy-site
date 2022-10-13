@@ -3,7 +3,7 @@ run yarn install in /server folder
 
 if bcrypt problem in /server
 run :
-npm uninstall bcrypt
+
 npm audit fix --force
 npm i bcrypt
 
