@@ -10,3 +10,5 @@ npm i bcrypt
 
 to start /server run:
 npx nodemon
+to start /client run:
+npm start
